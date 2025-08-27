@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Luceno - Assignment 1</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
+<body class="bg-light">
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Random User Generator</h2>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label for="userCount" class="form-label">Number of Users (0-1000):</label>
+      <input type="number" id="userCount" class="form-control" min="0" max="1000" placeholder="Enter number of users">
+    </div>
+    <div class="col-md-4">
+      <label for="nameType" class="form-label">Name Display:</label>
+      <select id="nameType" class="form-select">
+        <option value="first">First Name</option>
+        <option value="last">Last Name</option>
+      </select>
+    </div>
+  </div>
+  <div id="error" class="text-danger mb-3"></div>
+  <div class="d-flex justify-content-end mb-2">
+    <div id="countdown" class="fw-bold text-primary"></div>
+    </div>
+
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped" id="userTable">
+        <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody id="userBody">
+        <!-- Users will be generated here -->
+        </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
