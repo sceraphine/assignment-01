@@ -5,7 +5,8 @@ const errorEl = document.getElementById("error");
 const countdownEl = document.getElementById("countdown");
 const modal = new bootstrap.Modal(document.getElementById("userModal"));
 
-const modalName = document.getElementById("modal-name");
+const modalFirstName = document.getElementById("modal-fname");
+const modalLastName = document.getElementById("modal-lname");
 const modalAddress = document.getElementById("modal-address");
 const modalEmail = document.getElementById("modal-email");
 const modalPhone = document.getElementById("modal-phone");
@@ -46,7 +47,7 @@ countInput.addEventListener("input", () => {
 nameTypeSelect.addEventListener("change", renderUsers);
 
 function fetchUsers() {
-  const count = Number(countInput.value);
+  const count = Math.round(Number(countInput.value));
 
   if (isNaN(count) || count < 0 || count > 1000) {
     errorEl.textContent = "Please enter a valid number between 0 and 1000.";
@@ -116,7 +117,8 @@ function openModal(index) {
   currentUserIndex = index;
   const user = users[index];
 
-  modalName.value = `${user.name.first} ${user.name.last}`;
+  modalFirstName.value = user.name.first;
+  modalLastName.value = user.name.last;
   modalAddress.value = `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}`;
   modalEmail.value = user.email;
   modalPhone.value = user.phone;
@@ -139,9 +141,8 @@ deleteBtn.addEventListener("click", () => {
 saveBtn.addEventListener("click", () => {
   if (currentUserIndex !== null) {
     const user = users[currentUserIndex];
-    const fullName = modalName.value.split(" ");
-    user.name.first = fullName[0] || user.name.first;
-    user.name.last = fullName[-1] || user.name.last;
+    user.name.first = modalFirstName;
+    user.name.last = modalLastName;
     user.location.street.name = modalAddress.value;
     user.email = modalEmail.value;
     user.phone = modalPhone.value;
